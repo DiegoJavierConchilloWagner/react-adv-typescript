@@ -12,34 +12,21 @@ export const useShoppingCart = () => {
     const onProductCountChange = ( { count, product }:{ count: number, product: Product } ) => {
         setShoppingCart( prev => {
 
-            const productInCard: ProductInCard = prev[product.id] || {...product, count: 0};
-
-            if ( Math.max( productInCard.count + count, 0) > 0 ) {
-                productInCard.count += count;
+            if(!count){
+                delete prev[product.id]
                 return {
-                    ...prev,
-                    [product.id]: productInCard
+                    ...prev
                 }
             }
-            // borrar el producto
-            const { [product.id]:toDelete, ...rest } = prev;
-            return rest;
-
-            // if(!count){
-            //     delete prev[product.id]
-            //     return {
-            //         ...prev
-            //     }
+            // if ( count === 0 ) {
+            //     const { [product.id]:toDelete, ...rest } = prev;
+            //     return rest;
             // }
-            // // if ( count === 0 ) {
-            // //     const { [product.id]:toDelete, ...rest } = prev;
-            // //     return rest;
-            // // }
-            // return {
-            //     ...prev,
-            //     //La llave va a ser computada, por eso usamos corchetes
-            //     [product.id]: { ...product, count }
-            // }
+            return {
+                ...prev,
+                //La llave va a ser computada, por eso usamos corchetes
+                [product.id]: { ...product, count }
+            }
         })
     }
 
