@@ -38,3 +38,12 @@ export interface ProductContextProps {
 //     counter: number;
 //     increaseOrDecreaseBy: (incBy: number) => void;
 // };
+
+export interface onChangeArgs {
+    product: Product;
+    count: number;
+}
+
+export interface ProductInCard extends Product {
+    count: number;
+}
