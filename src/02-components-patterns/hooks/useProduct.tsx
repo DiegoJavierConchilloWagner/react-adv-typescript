@@ -41,7 +41,7 @@ export const useProduct = ( {onChange, product, incBy = 0, initialValues}:usePro
 
     return {
         counter,
-        isMaxCountReached: !!initialValues?.count && initialValues.maxCount === incBy,
+        isMaxCountReached: !!initialValues?.count && initialValues.maxCount === counter,
         maxCount: initialValues?.maxCount,
 
         increaseOrDecreaseBy,
